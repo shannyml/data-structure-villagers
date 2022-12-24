@@ -86,7 +86,7 @@ def all_names_by_hobby(filename):
 
     return [(fitness), (nature), (education), (play), (fashion), (music)]
 
-#print(all_names_by_hobby("villagers.csv"))
+#print(all_names_by_hobby("villagers.csv")) 
 
 
 def all_data(filename):
