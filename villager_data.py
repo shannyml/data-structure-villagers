@@ -1,5 +1,6 @@
 """Functions to parse a file containing villager data."""
 
+from select import select
 from unicodedata import name
 
 
@@ -83,11 +84,9 @@ def all_names_by_hobby(filename):
         elif hobby == "Music":
             music.append (name)
 
-
-    # TODO: replace this with your code
-
     return [(fitness), (nature), (education), (play), (fashion), (music)]
-print(all_names_by_hobby("villagers.csv"))
+
+#print(all_names_by_hobby("villagers.csv"))
 
 
 def all_data(filename):
@@ -149,26 +148,21 @@ def find_likeminded_villagers(filename, villager_name):
         {'Bella', ..., 'Carmen'}
     """
     likeminded = set()
+
     select_personality = None
     data = open(filename)
     
     for line in data:
-        name
-
-    # for line in data:
-    #     name, _, personalities, _ = line.rstip().split("|")
-
-    #     if name == villager_name:
-    #         chosen_personalities == personalities
-    #         break
+        name, _, personality = line.rstrip().split("|")[:3]
         
-    
-    # if similar_personalities:
-    #     for line in data:
-    #         name, _, personalities, _ = line.rstip().split("|")
-    #         if chosen_personalities == personalities:
-    #             similar_personalities.add(name)  
-            
+        if name == villager_name:
+            select_personality = personality
+            break
 
-    return similar_personalities
-#print(find_likeminded_villagers("villagers.csv",name))
+    if select_personality:
+      for line in data:
+        name, _, personality = line.rstrip().split("|")[:3]
+        if personality == select_personality:
+            likeminded.add(name)
+    return likeminded
+#print(find_likeminded_villagers("villagers.csv","Wendy"))
